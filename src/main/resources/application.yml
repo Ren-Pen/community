@@ -40,12 +40,10 @@ logging:
     com.nowcoder.community: debug
 
 
-
-
-
-
-
-
+# community
+community:
+  path:
+    domain: http://localhost:8080
 
 
 
