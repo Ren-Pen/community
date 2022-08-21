@@ -16,6 +16,18 @@ spring:
       maximum-pool-size: 15
       minimum-idle: 5
       idle-timeout: 30000
+  mail:
+    host: smtp.office365.com
+    port: 587
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+    username: temp123456000@outlook.com
+    password: 1234567890abc
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
