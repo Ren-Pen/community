@@ -1,6 +1,7 @@
 package com.nowcoder.community.controller;
 
 import com.nowcoder.community.entity.DiscussPost;
+import com.nowcoder.community.entity.Page;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.DiscussPostService;
 import com.nowcoder.community.service.UserService;
@@ -26,8 +27,13 @@ public class HomeController {
 
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
-    public String getIndexPage(Model model){
-        List<DiscussPost> list = discussPostService.findDiscussPosts(0, 0, 10);
+    public String getIndexPage(Model model, Page page){
+        // 方法调用之前 SpringMVC会自动实例化 model 和 page 并且将 page 注入给 model
+        // 所以在 thymeleaf 中可以直接访问 page 中的数据
+        page.setRows(discussPostService.findDiscussPostRows(0));
+        page.setPath("/index");
+
+        List<DiscussPost> list = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit());
         List<Map<String, Object>> discussPosts = new ArrayList<>();
         if (list != null){
             for (DiscussPost post: list){
