@@ -19,7 +19,7 @@
         where id = #{id}
     </select>
 
-    <select id="selectByUsername" resultType="User">
+    <select id="selectByName" resultType="User">
         select <include refid="selectFields"/>
         from user
         where username = #{username}
